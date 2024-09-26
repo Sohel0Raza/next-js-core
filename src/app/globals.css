@@ -3,5 +3,8 @@
 @tailwind utilities;
 
 .btn-primary{
-  @apply text-white bg-primary rounded py-2 px-3 md:px-7 hover:bg-[#af2e8f] active:scale-105
+  @apply text-white bg-primary rounded py-2 px-3 md:px-7 hover:bg-[#af2e8f] active:scale-105 text-lg font-semibold
+}
+.btn-secondary{
+  @apply  text-primary rounded py-1 px-3  hover:scale-110 hover:bg-slate-200 active:scale-105 text-sm font-semibold
 }

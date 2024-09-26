@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
   const links = [
@@ -10,7 +10,10 @@ export default function Navbar() {
     { titel: "Service", path: "/service" },
   ];
   const pathName = usePathname();
-
+  const router = useRouter()
+const handleLogin = () =>{
+    router.push("/login")
+}
   return (
     <div className="fixed z-40 w-full">
       <div className="flex justify-between items-center py-3 px-5 bg-[#fff] shadow-xl">
@@ -21,13 +24,14 @@ export default function Navbar() {
           {links.map((link) => (
             <Link
               href={link.path}
+              key={link.path}
               className={`${pathName === link.path ? "text-primary" : ""}`}
             >
               <li>{link.titel}</li>
             </Link>
           ))}
         </ul>
-        <button className="btn-primary">Login</button>
+        <button onClick={handleLogin} className="btn-primary">Login</button>
       </div>
     </div>
   );

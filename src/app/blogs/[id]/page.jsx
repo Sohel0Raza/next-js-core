@@ -1,7 +1,6 @@
-import Link from "next/link";
 import React from "react";
 
-export default function BlogsPage() {
+export default function BlogPage({ params }) {
   const blogs = [
     {
       id: 1,
@@ -52,25 +51,15 @@ export default function BlogsPage() {
         "An overview of web accessibility principles and why it's important to make your website usable for everyone.",
     },
   ];
-
+  const { id } = params;
+  const {title,description} = blogs?.find((blog) => blog.id == id);
   return (
-    <div className="md:py-24">
-      <h2 className="text-xl font-semibold text-center my-5">My Blogs</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {blogs.map((blog) => (
-          <div
-            key={blog.id}
-            className="rounded hover:bg-slate-100 p-5 h-36 relative border-[1px] border-gray-400"
-          >
-            <h2 className="text-xl font-semibold">{blog.title}</h2>
-            <div className="absolute bottom-5">
-              <button className="btn-secondary">
-                <Link href={`/blogs/${blog.id}`}>View Details</Link>
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+    <div className="py-24 h-screen">
+
+    <div className="rounded hover:bg-slate-100 p-5 h-36 relative border-[1px] border-gray-400">
+      <h2 className="text-xl font-semibold">{title}</h2>
+      <p>{description}</p>
+    </div>
     </div>
   );
 }
