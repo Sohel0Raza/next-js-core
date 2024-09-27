@@ -8,6 +8,7 @@ export default function Navbar() {
     { titel: "Blogs", path: "/blogs" },
     { titel: "About Us", path: "/about" },
     { titel: "Service", path: "/service" },
+    { titel: "Categories", path: "/categories" },
   ];
   const pathName = usePathname();
   const router = useRouter()
