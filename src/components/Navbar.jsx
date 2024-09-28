@@ -9,6 +9,7 @@ export default function Navbar() {
     { titel: "About Us", path: "/about" },
     { titel: "Service", path: "/service" },
     { titel: "Categories", path: "/categories" },
+    { titel: "Posts", path: "/posts" },
   ];
   const pathName = usePathname();
   const router = useRouter()
@@ -16,7 +17,7 @@ const handleLogin = () =>{
     router.push("/login")
 }
   return (
-    <div className="fixed z-40 w-full">
+    <div className="w-full">
       <div className="flex justify-between items-center py-3 px-5 bg-[#fff] shadow-xl">
         <h2 className="text-3xl uppercase font-bold">
           Next <span className="text-primary">Hero</span>
