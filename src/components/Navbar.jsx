@@ -5,11 +5,11 @@ import { usePathname, useRouter } from "next/navigation";
 export default function Navbar() {
   const links = [
     { titel: "Home", path: "/" },
+    { titel: "Posts", path: "/posts" },
+    { titel: "Meals", path: "/meals" },
     { titel: "Blogs", path: "/blogs" },
     { titel: "About Us", path: "/about" },
-    { titel: "Service", path: "/service" },
     { titel: "Categories", path: "/categories" },
-    { titel: "Posts", path: "/posts" },
   ];
   const pathName = usePathname();
   const router = useRouter()
