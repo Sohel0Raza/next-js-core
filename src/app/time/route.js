@@ -1,5 +1,14 @@
+
 export const GET = async () => {
-  return Response.json({
-    currentTime: new Date().toLocaleTimeString(),
-  });
-};
+    return new Response(
+      JSON.stringify({
+        currentTime: new Date().toLocaleTimeString(),
+      }),
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  };
+  
