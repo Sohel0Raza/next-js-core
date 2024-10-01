@@ -1,5 +1,7 @@
 import Link from "next/link";
-import React from "react";
+import { Headland_One } from "next/font/google";
+
+const headland = Headland_One({ weight: ["400"], subsets: ["latin"] });
 
 export default function BlogsPage() {
   const blogs = [
@@ -54,7 +56,7 @@ export default function BlogsPage() {
   ];
 
   return (
-    <div className="md:py-24">
+    <div className={`${headland.className} md:py-2`}>
       <h2 className="text-xl font-semibold text-center my-5">My Blogs</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {blogs.map((blog) => (
