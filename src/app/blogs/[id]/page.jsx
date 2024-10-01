@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function BlogPage({ params }) {
   const blogs = [
     {
@@ -52,14 +50,13 @@ export default function BlogPage({ params }) {
     },
   ];
   const { id } = params;
-  const {title,description} = blogs?.find((blog) => blog.id == id);
+  const { title, description } = blogs?.find((blog) => blog.id == id);
   return (
     <div className="py-24 h-screen">
-
-    <div className="rounded hover:bg-slate-100 p-5 h-36 relative border-[1px] border-gray-400">
-      <h2 className="text-xl font-semibold">{title}</h2>
-      <p>{description}</p>
-    </div>
+      <div className="rounded hover:bg-slate-100 p-5 h-36 relative border-[1px] border-gray-400">
+        <h2 className="text-xl font-semibold">{title}</h2>
+        <p>{description}</p>
+      </div>
     </div>
   );
 }

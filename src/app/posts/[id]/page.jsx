@@ -1,5 +1,13 @@
-import { getData, getPost } from "@/services/postApi";
+import { getData } from "@/services/postApi";
 
+export const generateMetadata = async ({ params }) => {
+  const post = await getData(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
+
+  return {
+    title: post.title,
+    description: post.body,
+  };
+};
 const PostDatail = async ({ params }) => {
   const { id } = params;
   const post = await getData(`https://jsonplaceholder.typicode.com/posts/${id}`);
