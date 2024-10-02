@@ -2,7 +2,7 @@ import { getData } from "@/services/postApi";
 import Link from "next/link";
 
 const PostsPage = async () => {
-  const postsData = await getData("https://jsonplaceholder.typicode.com/posts");
+  const postsData = await getData(`${process.env.NEXT_PUBLIC_API_URL}/posts`)
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
