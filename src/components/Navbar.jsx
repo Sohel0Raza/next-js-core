@@ -1,5 +1,7 @@
 "use client";
+
 import Link from "next/link";
+import {useSession} from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
@@ -11,11 +13,13 @@ export default function Navbar() {
     { titel: "About Us", path: "/about" },
     { titel: "Categories", path: "/categories" },
   ];
+  const session = useSession();
+console.log('✌️session --->', session);
   const pathName = usePathname();
-  const router = useRouter()
-const handleLogin = () =>{
-    router.push("/login")
-}
+  const router = useRouter();
+  const handleLogin = () => {
+    router.push("/api/auth/signin");
+  };
   return (
     <div className="w-full">
       <div className="flex justify-between items-center py-3 px-5 bg-[#fff] shadow-xl">
@@ -33,7 +37,14 @@ const handleLogin = () =>{
             </Link>
           ))}
         </ul>
-        <button onClick={handleLogin} className="btn-primary">Login</button>
+        {
+          !session.status === "authenticated" ? <button onClick={handleLogin} className="btn-primary">
+          Login
+        </button> : <button onClick={handleLogin} className="btn-primary">
+          Logout
+        </button>
+        }
+        
       </div>
     </div>
   );

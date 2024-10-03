@@ -1,4 +1,6 @@
 import AboutContent from "@/components/AboutContent";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export const metadata = {
   title: {
@@ -9,12 +11,14 @@ export const metadata = {
 
 const getData = async () => {
   const res = await fetch("http://localhost:3000/time", { cache: "no-store" });
- 
+
   const data = await res.json();
   return data.currentTime;
 };
 
 export default async function Page() {
+  const session = await getServerSession(authOptions);
+console.log('✌️session --->', session);
   const time = await getData();
   return (
     <div className="md:py-24 h-screen text-center ">
