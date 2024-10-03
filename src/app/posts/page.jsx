@@ -6,7 +6,7 @@ const PostsPage = async () => {
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
-        {postsData?.slice(0, 12).map(({ id, title, body }) => (
+        {postsData?.slice(0, 12).map(({ id, title }) => (
           <div key={id} className="bg-slate-200 text-sky-900 rounded px-5 pt-5">
             <h2 className="uppercase py-3 text-xl font-semibold text-orange-900 ">
               {title}
