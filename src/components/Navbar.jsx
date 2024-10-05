@@ -14,7 +14,6 @@ export default function Navbar() {
     { titel: "Categories", path: "/categories" },
   ];
   const session = useSession();
-console.log('✌️session --->', session);
   const pathName = usePathname();
   const router = useRouter();
   const handleLogin = () => {
@@ -22,7 +21,8 @@ console.log('✌️session --->', session);
   };
   return (
     <div className="w-full">
-      <div className="flex justify-between items-center py-3 px-5 bg-[#fff] shadow-xl">
+      <div className="flex justify-between item
+      s-center py-3 px-5 bg-[#fff] shadow-xl">
         <h2 className="text-3xl uppercase font-bold">
           Next <span className="text-primary">Hero</span>
         </h2>

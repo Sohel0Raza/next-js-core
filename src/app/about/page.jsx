@@ -18,7 +18,6 @@ const getData = async () => {
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
-console.log('✌️session --->', session);
   const time = await getData();
   return (
     <div className="md:py-24 h-screen text-center ">
