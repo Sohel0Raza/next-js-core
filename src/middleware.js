@@ -1,10 +1,10 @@
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 export default function middleware(request) {
-    const user = true;
-    const cookies = request.cookies.get("token");
+    const token = cookies(request).get("next-auth.session-token");
 
-  if (!user) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  if (!token) {
+    return NextResponse.redirect(new URL("api/auth/signin", request.url));
   }
   return NextResponse.next();
 }

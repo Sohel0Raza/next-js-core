@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {useSession} from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
@@ -21,8 +21,10 @@ export default function Navbar() {
   };
   return (
     <div className="w-full">
-      <div className="flex justify-between item
-      s-center py-3 px-5 bg-[#fff] shadow-xl">
+      <div
+        className="flex justify-between item
+      s-center py-3 px-5 bg-[#fff] shadow-xl"
+      >
         <h2 className="text-3xl uppercase font-bold">
           Next <span className="text-primary">Hero</span>
         </h2>
@@ -37,14 +39,20 @@ export default function Navbar() {
             </Link>
           ))}
         </ul>
-        {
-          !session.status === "authenticated" ? <button onClick={handleLogin} className="btn-primary">
-          Login
-        </button> : <button onClick={handleLogin} className="btn-primary">
-          Logout
-        </button>
-        }
-        
+        <div>
+          {session.status === "unauthenticated" ? (
+            <button onClick={handleLogin} className="btn-primary">
+              Login
+            </button>
+          ) : (
+            <button onClick={() => signOut()} className="btn-primary">
+              Logout
+            </button>
+          )}
+          <Link href="/api/auth/signup">
+            <button className="btn-primary">Sign Up</button>
+          </Link>
+        </div>
       </div>
     </div>
   );
