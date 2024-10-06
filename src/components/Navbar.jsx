@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Navbar() {
   const links = [
@@ -14,6 +15,7 @@ export default function Navbar() {
     { titel: "Categories", path: "/categories" },
   ];
   const session = useSession();
+  console.log("✌️session --->", session);
   const pathName = usePathname();
   const router = useRouter();
   const handleLogin = () => {
@@ -39,7 +41,19 @@ export default function Navbar() {
             </Link>
           ))}
         </ul>
-        <div>
+        <div className="flex justify-between items-center">
+          <Image
+            src={session?.data?.user?.image}
+            alt={session?.data?.user?.name || "User"}
+            width={50}
+            height={50}
+            className="rounded-full bg-gray-900 p-[1px] mr-4"
+          />
+
+          <div>
+            <h6>{session?.data?.user?.name}</h6>
+            <h6>{session?.data?.user?.type}</h6>
+          </div>
           {session.status === "unauthenticated" ? (
             <button onClick={handleLogin} className="btn-primary">
               Login

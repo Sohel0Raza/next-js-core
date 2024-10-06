@@ -4,7 +4,7 @@ const SignUpPage = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     const newUser = {
-      neme: e.target.name.value,
+      name: e.target.name.value,
       email: e.target.email.value,
       password: e.target.password.value,
       image: e.target.image.value,

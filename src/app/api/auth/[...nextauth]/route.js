@@ -1,31 +1,9 @@
+import connectDB from "@/lib/connectDB";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-const users = [
-  {
-    email: "jane.doe@example.com",
-    name: "Jane Doe",
-    password: "adminPassword123",
-    type: "admin",
-  },
-  {
-    email: "john.smith@example.com",
-    name: "John Smith",
-    password: "userPassword456",
-    type: "user",
-  },
-  {
-    email: "emily.jones@example.com",
-    name: "Emily Jones",
-    password: "adminPassword789",
-    type: "admin",
-  },
-  {
-    email: "michael.brown@example.com",
-    name: "Michael Brown",
-    password: "userPassword012",
-    type: "user",
-  },
-];
+import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
+
 
 export const authOptions = {
   secret: process.env.NEXT_PUBLIC_SECRET_KEY,
@@ -55,7 +33,9 @@ export const authOptions = {
           return null;
         }
         if (email) {
-          const currentUser = users.find((user) => user.email === email);
+          const db = await connectDB()
+          const currentUser =await db.collection("users").findOne({email})
+          // const currentUser = users.find((user) => user.email === email);
           if (currentUser) {
             if (currentUser.password === password) {
               return currentUser;
@@ -65,6 +45,11 @@ export const authOptions = {
         return null;
       },
     }),
+    GoogleProvider({
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET
+    }),
+   
   ],
   callbacks: {
     async jwt({ token, account, user }) {
@@ -73,7 +58,7 @@ export const authOptions = {
       }
       return token;
     },
-    async session({ session, user, token }) {
+    async session({ session, token }) {
       session.user.type = token.type;
       return session;
     },
